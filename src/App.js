@@ -52,7 +52,7 @@ import UserWellnessHome from "./pages/UserWellnessHome";
 import AddDoctor from "./pages/AddDoctor"
 import DoctorHome from "./pages/DoctorHome"
 import DoctorRead from "./pages/DoctorRead"
-import DoctorSearch from "./pages/DoctorSearch"
+//import DoctorSearch from "./pages/DoctorSearch"
 import DoctorUpdate from "./pages/DoctorUpdate"
 
 import UserDoctorHome from "./pages/UserDoctorHome ";
