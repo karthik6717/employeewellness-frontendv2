@@ -38,7 +38,7 @@ function EmployeeRead() {
               <strong>Last Name: {data.lastName}</strong>
             </div>
             <div className="mb-2">
-              <strong>Email: {data.email}</strong>
+              <strong>Email Address: {data.email}</strong>
             </div>
             <div className="mb-2">
               <strong>Password: {data.password}</strong>
@@ -50,7 +50,7 @@ function EmployeeRead() {
               <strong>Department: {data.department}</strong>
             </div>
             <div className="mb-2">
-              <strong>DateOfBirth: {data.dateOfBirth}</strong>
+              <strong>Date Of Birth: {data.dateOfBirth}</strong>
             </div>
             <div className="mb-2">
               <strong>Gender: {data.gender}</strong>
@@ -65,7 +65,7 @@ function EmployeeRead() {
               <strong>Role: {data.role}</strong>
             </div>
             <div className="mb-2">
-              <strong>DateOfJoining: {data.dateOfJoining}</strong>
+              <strong>Date Of Joining: {data.dateOfJoining}</strong>
             </div>
             <div className="mb-2">
               <strong>Hobbies: {data.hobbies}</strong>
@@ -74,25 +74,25 @@ function EmployeeRead() {
               <strong>Address:{data.address}</strong>
             </div>
             <div className="mb-2">
-              <strong>SportsInterest:{data.sportsInterest}</strong>
+              <strong>Sports Interest:{data.sportsInterest}</strong>
             </div>
             <div className="mb-2">
-              <strong>MedicalHistory:{data.medicalHistory}</strong>
+              <strong>Medical History:{data.medicalHistory}</strong>
             </div>
             <div className="mb-2">
-              <strong>EmergencyContact:{data.emergencyContact}</strong>
+              <strong>Emergency Contact:{data.emergencyContact}</strong>
             </div>
             <div className="mb-2">
-              <strong>BloodGroup:{data.bloodGroup}</strong>
+              <strong>Blood Group:{data.bloodGroup}</strong>
             </div>
             <div className="mb-2">
-              <strong>MaritalStatus:{data.maritalStatus}</strong>
+              <strong>Marital Status:{data.maritalStatus}</strong>
             </div>
             <div className="mb-2">
-              <strong>nationality:{data.nationality}</strong>
+              <strong>Nationality:{data.nationality}</strong>
             </div>
             <div className="mb-2">
-              <strong>TotalRewardPoints:{data.totalRewardPoints}</strong>
+              <strong>Total Reward Points:{data.totalRewardPoints}</strong>
             </div>
           </div>
 
@@ -101,10 +101,10 @@ function EmployeeRead() {
               to={`/employeeUpdate/${employeeId}`}
               className="btn btn-success"
             >
-              Edit
+              REFINE
             </Link>
             <Link to="/employees" className="btn btn-primary ms-3">
-              Back
+              BACK
             </Link>
           </div>
         </div>

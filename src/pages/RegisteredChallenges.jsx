@@ -81,9 +81,9 @@ const RegisteredChallenges = () => {
           setOpenDialog(false);
 
         })
-        .catch((error) => {
-          setError("Failed to update challenge status. Please try again.");
-          console.error(error);
+        .catch((errorMessage) => {
+          setError(errorMessage);
+          console.error(errorMessage);
         });
     }
   };

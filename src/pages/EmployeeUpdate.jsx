@@ -325,7 +325,7 @@ function EmployeeUpdate() {
             </div>
 
             <div className="mb-2">
-            <label htmlFor="totalRewardPoints">totalRewardPoints:</label>
+            <label htmlFor="totalRewardPoints">Total Reward Points:</label>
             <input
               type="number"
               name="totalRewardPoints"
@@ -337,8 +337,8 @@ function EmployeeUpdate() {
             </div>
             
 
-          <button type="submit" className="btn btn-primary w-100  mt-4 mb-2 d-flex align-items-center justify-content-center">Update Employee</button>
-          <Link to='/employees' className='btn btn-danger w-100 mt-4  mb-2 d-flex align-items-center justify-content-center'>Back</Link>
+          <button type="submit" className="btn btn-primary w-100  mt-4 mb-2 d-flex align-items-center justify-content-center">Update Associate</button>
+          <Link to='/employees' className='btn btn-danger w-100 mt-4  mb-2 d-flex align-items-center justify-content-center'>BACK</Link>
         </form>
         </div>
       </div>

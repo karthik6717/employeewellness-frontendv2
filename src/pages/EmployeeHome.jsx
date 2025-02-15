@@ -90,7 +90,7 @@ function EmployeeHome() {
                 <th>Associate Id</th>
                 <th>First Name</th>
                 <th>Last Name</th>
-                <th>Email</th>
+                <th>Email Address</th>
                 <th>Password</th>
                 <th>Contact Number</th>
                 <th>Department</th>
@@ -111,16 +111,16 @@ function EmployeeHome() {
                     <td>{d.department}</td>
                     <td>{d.totalRewardPoints}</td>
                     <td>
-                        <Link to={`/employeeRead/${d.employeeId}`} className='btn btn-sm btn-info me-2'>Read</Link>
-                        <Link to={`/employeeUpdate/${d.employeeId}`} className='btn btn-sm btn-primary me-2'>Refine</Link>
-                        <button onClick={()=>handleShowModal(d.employeeId,`${d.firstName} ${d.lastName}`)} className='btn btn-sm btn-danger'>Remove</button>
+                        <Link to={`/employeeRead/${d.employeeId}`} className='btn btn-sm btn-info me-2'>READ</Link>
+                        <Link to={`/employeeUpdate/${d.employeeId}`} className='btn btn-sm btn-primary me-2'>REFINE</Link>
+                        <button onClick={()=>handleShowModal(d.employeeId,`${d.firstName} ${d.lastName}`)} className='btn btn-sm btn-danger'>REMOVE</button>
                     </td>
                  </tr>   
                 )) : <tr><td colSpan={9}>No Associates Found</td></tr>
             }
         </tbody>
        </table>
-        <Link to='/dashboard' className='btn btn-primary ms-3'> Home</Link>
+        <Link to='/dashboard' className='btn btn-primary ms-3'> HOME</Link>
        </div>
        </div> 
         

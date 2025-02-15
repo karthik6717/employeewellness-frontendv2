@@ -288,9 +288,8 @@
 
 
 
-
 import { Button } from 'react-bootstrap';
-import { Menu, MenuItem, IconButton, Drawer, List, ListItem, ListItemText, CircularProgress } from "@mui/material";
+import { Menu, MenuItem, IconButton, Drawer, List, ListItem, ListItemText, CircularProgress, Avatar } from "@mui/material";
 import Container from 'react-bootstrap/Container';
 import Nav from 'react-bootstrap/Nav';
 import Navbar from 'react-bootstrap/Navbar';
@@ -301,7 +300,6 @@ import { useEffect, useState } from 'react';
 import getMenu from '../utils/menu';
 import React from 'react';
 import SpaRoundedIcon from '@mui/icons-material/SpaRounded';
-import AccountCircleIcon from '@mui/icons-material/AccountCircle'; // Profile icon
 import useEmployeeId from '../utils/useEmployeeId';
 import { getEmployeebyId } from "../services/employeeService";
 
@@ -316,14 +314,13 @@ function Header() {
     const [employeeDetails, setEmployeeDetails] = useState(null);
     const [loading, setLoading] = useState(false);
 
-    // Combined useEffect for menu and profile details
     useEffect(() => {
         if (userInfo) {
             setMenu(getMenu(userInfo.role, employeeId));
         } else {
             setMenu([]);
         }
-        
+
         if (drawerOpen) {
             setLoading(true);
             getEmployeebyId(employeeId)
@@ -338,6 +335,29 @@ function Header() {
                 });
         }
     }, [userInfo, employeeId, drawerOpen]);
+
+
+    useEffect(() => {
+        if (userInfo && employeeId) {
+            setLoading(true);
+            getEmployeebyId(employeeId)
+                .then((response) => {
+                    setEmployeeDetails(response.data);
+                })
+                .catch((error) => {
+                    console.error("Error fetching employee details:", error);
+                })
+                .finally(() => {
+                    setLoading(false);
+                });
+        }
+    }, [userInfo, employeeId]);  // 🔹 Runs as soon as userInfo or employeeId changes
+    
+
+
+
+
+
 
     const handleMenuOpen = (event, dropdown) => {
         setAnchorEl(event.currentTarget);
@@ -365,28 +385,31 @@ function Header() {
         setDrawerOpen(open);
     };
 
+    // Extract initials from userInfo (first letter of first name + first letter of last name)
+    const getUserInitials = () => {
+        if (employeeDetails && employeeDetails.firstName && employeeDetails.lastName) {
+            return `${employeeDetails.firstName[0]}${employeeDetails.lastName[0]}`;
+        }
+        return '';
+    };
+    
     return (
         <Navbar expand="lg" style={{ backgroundColor: "green" }}>
             <Container>
-            <IconButton
-            size="small"
-            edge="start"
-            color="inherit"
-            sx={{
-             
-              border: "2px solid white",
-              color: "white"
-            }}
-            aria-label="logo"
-           // onClick={toggleDrawer(true)}
-          >
-            <SpaRoundedIcon />
-          </IconButton>
+                <IconButton
+                    size="small"
+                    edge="start"
+                    color="inherit"
+                    sx={{ border: "2px solid white", color: "white" }}
+                    aria-label="logo"
+                >
+                    <SpaRoundedIcon />
+                </IconButton>
 
                 <Navbar.Brand href="#home" style={{ color: "white" }}>EmployeeWellness</Navbar.Brand>
                 <Navbar.Toggle aria-controls="basic-navbar-nav" />
                 <Navbar.Collapse id="basic-navbar-nav">
-                    <Nav className="ms-auto"> {/* Aligns items to the right */}
+                    <Nav className="ms-auto" style={{ alignItems: "center" }}>
                         {menu.map((item, index) => (
                             <div key={index}>
                                 {item.dropdown ? (
@@ -410,20 +433,16 @@ function Header() {
                             </div>
                         ))}
 
-                        {/* Profile Icon - Aligned to the right */}
-                        <div style={{ marginLeft: "auto" }}>
-                            <IconButton color="inherit" onClick={toggleDrawer(true)} style={{ color: "white" }}>
-                                <AccountCircleIcon fontSize="large" />
-                            </IconButton>
-                        </div>
-{/* 
-                        {userInfo ? (
-                            <Button variant='danger' onClick={logout}>Logout</Button>
-                        ) : (
-                            <Button variant='primary'>
-                                <NavLink to="/" className='text-white'>Login</NavLink>
-                            </Button>
-                        )} */}
+                        {/* Profile Icon - Visible only for logged-in users (user or manager role) */}
+                        {userInfo && (userInfo.role === 'USER' || userInfo.role === 'MANAGER') && (
+                            <Nav.Item className="ms-3">
+                                <IconButton color="inherit" onClick={toggleDrawer(true)}>
+                                    <Avatar sx={{ bgcolor: "white", color: "green", fontWeight: "bold" }}>
+                                        {getUserInitials()}
+                                    </Avatar>
+                                </IconButton>
+                            </Nav.Item>
+                        )}
                     </Nav>
                 </Navbar.Collapse>
             </Container>
@@ -468,12 +487,12 @@ function Header() {
                                     <ListItemText primary="Close" />
                                 </ListItem>
                                 {userInfo ? (
-                            <Button variant='danger' onClick={logout}>Logout</Button>
-                        ) : (
-                            <Button variant='primary'>
-                                <NavLink to="/" className='text-white'>Login</NavLink>
-                            </Button>
-                        )}
+                                    <Button variant='danger' onClick={logout}>Logout</Button>
+                                ) : (
+                                    <Button variant='primary'>
+                                        <NavLink to="/" className='text-white'>Login</NavLink>
+                                    </Button>
+                                )}
                             </>
                         )
                     )}
@@ -484,6 +503,7 @@ function Header() {
 }
 
 export default Header;
+
 
 
 

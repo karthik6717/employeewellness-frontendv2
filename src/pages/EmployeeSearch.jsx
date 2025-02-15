@@ -42,7 +42,7 @@ function EmployeeSearch({ onSearch }) {
         value={employeeId}
         onChange={(e) => setEmployeeId(e.target.value)}
         className="form-control me-2"
-        placeholder="Enter Employee ID"
+        placeholder="Enter Associate ID"
       />
       <button className="btn btn-primary" onClick={handleSearch}>
         Search
