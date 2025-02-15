@@ -134,34 +134,25 @@ export const getRegisterdChallenges = async (employeeId) => {
 
 // Mark a challenge as complete for an employee
 
-export const markChallengeAsComplete = (
-  employeeId,
-  challeId,
-  challengeStatus
-) => {
+export const markChallengeAsComplete = async (employeeId, challeId, challengeStatus) => {
   const apiURL = `${SET_CHALLENGE_AS_COMPLETE}${employeeId}/${challeId}/${challengeStatus}`;
-  return axios.post(
-    apiURL,
-    {},
-    {
-      headers: {
-        Authorization: "Bearer " + JSON.parse(getCookie("_USER_AUTH_")),
-      },
-    }
-  );
+
+  try {
+    const response = await axios.post(
+      apiURL,
+      {},
+      {
+        headers: {
+          Authorization: "Bearer " + JSON.parse(getCookie("_USER_AUTH_")),
+        },
+      }
+    );
+    return response.data; // Return success response
+  } catch (error) {
+    console.error("Error marking challenge as complete:", error);
+    throw error.response?.data?.message ;
+  }
 };
 
-// Complete challenges and add reward points
 
-// export const setChallengesAsCompleteAddRewardPoints = (
-//   employeeId,
-//   challeId,
-//   challengeStatus
-// ) => {
-//   const apiURL = `${SET_COMPLETE_CHALLEGE_ADD_REWARD_POINTS}${employeeId}/${challeId}/${challengeStatus}`;
-//   return axios.post(apiURL, {
-//     headers: {
-//       Authorization: "Bearer " + localStorage.getItem("token"),
-//     },
-//   });
-// };
+

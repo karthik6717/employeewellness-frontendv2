@@ -59,7 +59,7 @@ const EmployeeDetails = () => {
     e.preventDefault();
     try{
       await addEmployee(formData);
-      setDialogMessage("New Talent Onboarded successfully!");
+      setDialogMessage("New Talent Onboarded Successfully!");
       setDialogOpen(true);
 
       setTimeout(() => {
@@ -169,7 +169,7 @@ const EmployeeDetails = () => {
         />
 
         <DatePicker
-          label="Date of Birth"
+          label="Date Of Birth"
           className="date-picker"
           value={formData.dateOfBirth}
           onChange={(value) => handleDateChange("dateOfBirth", value)}
@@ -236,7 +236,7 @@ const EmployeeDetails = () => {
         </TextField>
 
         <DatePicker
-          label="Date of Joining"
+          label="Date Of Joining"
           value={formData.dateOfJoining}
           onChange={(value) => handleDateChange("dateOfJoining", value)}
           renderInput={(params) => <TextField {...params} fullWidth />}
@@ -325,7 +325,7 @@ const EmployeeDetails = () => {
         <Button type="submit" variant="contained" color="success" fullWidth sx={{gridColumn: "2 / 3"}}>
           Submit
         </Button>
-        <Link to='/employees' className='btn btn-primary ms-3'> Home</Link>
+        <Link to='/employees' className='btn btn-primary ms-3'> HOME</Link>
       </Box>
     </LocalizationProvider>
     {/* Dialog Box */}

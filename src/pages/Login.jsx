@@ -161,6 +161,7 @@ import { setCookie } from "../utils/common";
 import { useNavigate } from "react-router-dom";
 import { useUser } from "../contexts/UserContext";
 import { login } from "../services/loginService";
+import Footer from "./Footer";
 import Tablet_login from "../assets/Tablet_login.gif";
 
 const Login = () => {
@@ -238,13 +239,13 @@ const Login = () => {
               <h3 className="mb-4 text-center">Sign In</h3>
               <Form noValidate validated={validated} onSubmit={handleSubmit}>
                 <Form.Group className="mb-3" controlId="formBasicEmail">
-                  <Form.Label>Email address</Form.Label>
+                  <Form.Label>Email Address</Form.Label>
                   <Form.Control
                     type="email"
                     value={formData.email}
                     onChange={handleChange}
                     name="email"
-                    placeholder="Enter email"
+                    placeholder="Enter Email"
                     required
                   />
                   <Form.Control.Feedback type="invalid">
@@ -270,7 +271,7 @@ const Login = () => {
                     onClick={() => setShowPassword(!showPassword)}
                     style={{ cursor: "pointer" }}
                   >
-                    {showPassword ? "hide" : "show"}
+                    {showPassword ? "Hide" : "Show"}
                   </span>
                 </Form.Group>
 
@@ -284,7 +285,13 @@ const Login = () => {
           </Col>
         </Row>
       </Container>
+
+      <div>
+        <Footer/>
+      </div>
     </div>
+
+    
   );
 };
 

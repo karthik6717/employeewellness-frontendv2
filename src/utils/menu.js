@@ -52,7 +52,7 @@ const menu = [
    dropdown: [
    // { label: "Add Challenge", path: "/addChallenge" },
     { label: "Get All Challenges", path: "/userchallenges" },
-    { label: "Get Challenge By Id", path: "/challenges" },
+    { label: "Get Challenge By Id", path: "/userchallenges" },
    // { label: "Update Challenge", path: "/challenges" },
    // { label: "Delete Challenge", path: "/challenges" },
     { label: "Registered Challenges", path: `/registeredChallenges/${employeeId}`},
@@ -152,7 +152,7 @@ const menu = [
  dropdown: [
   { label: "Get All Doctors", path: "/userDoctorHome" },
  // { label: "Add Doctor", path: "/addDoctor" },
-  { label: "Get doctor By Id", path: "/doctorSearch" },
+  { label: "Get doctor By Id", path: "/userDoctorHome" },
  // { label: "Update Doctor", path: "/doctor" },
  // { label: "Delete doctor", path: "/doctor" },
 ],
