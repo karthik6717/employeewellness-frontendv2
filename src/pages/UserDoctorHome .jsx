@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { getAllDoctors } from '../services/doctorService'; // Adjust based on your service structure
+import UserDoctorSearch from './userDoctorSearch';
 
 function UserDoctorHome() {
     const [data, setData] = useState([]);
@@ -34,6 +35,12 @@ function UserDoctorHome() {
                 {/* <div className='d-flex justify-content-end mb-2'>
                     <Link to="/addDoctor" className='btn btn-success'>Add +</Link>
                 </div> */}
+
+                <div className='d-flex justify-content-end mb-2'>
+                    <UserDoctorSearch/>
+                   
+                </div>
+
                 <table className='table table-bordered'>
                     <thead>
                         <tr>
@@ -65,7 +72,7 @@ function UserDoctorHome() {
                                     <td>{doctor.availableTill}</td>
                                     <td>{doctor.qualification}</td>
                                     <td>
-                                        <Link to={`/doctorRead/${doctor.doctorId}`} className='btn btn-sm btn-info me-2'>Read</Link>
+                                        <Link to={`/userdoctorRead/${doctor.doctorId}`} className='btn btn-sm btn-info me-2'>Read</Link>
                                         {/* <Link to={`/doctorUpdate/${doctor.doctorId}`} className='btn btn-sm btn-primary me-2'>Edit</Link>
                                         <button onClick={() => handleDelete(doctor.doctorId)} className='btn btn-sm btn-danger me-2'>Delete</button> */}
                                     </td>
@@ -74,6 +81,7 @@ function UserDoctorHome() {
                         }
                     </tbody>
                 </table>
+                <Link to='/dashboard' className='btn btn-primary ms-3'> Home</Link>
             </div>
         </div>
     );

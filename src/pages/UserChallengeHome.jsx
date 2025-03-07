@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { Link } from "react-router-dom";
+import { Link,useNavigate } from "react-router-dom";
 import {
   getAllChallenges,
  // deleteChallenge,
@@ -7,9 +7,11 @@ import {
 } from "../services/challengeService";
 //import UserHome from "./userhome";
 //import { jwtDecode } from "jwt-decode";
-import RegisteredChallenges from "./RegisteredChallenges";
+//import RegisteredChallenges from "./RegisteredChallenges";
 import { useUser } from "../contexts/UserContext";
-import ChallengeSearch from "./ChallengeSearch";
+//import ChallengeSearch from "./ChallengeSearch";
+import UserChallengeSearch from "./UserChallengeSearch";
+import {Modal,Button} from 'react-bootstrap'
 
 
 function UserChallengeHome() {
@@ -18,6 +20,18 @@ function UserChallengeHome() {
   //const employeeData = jwtDecode(localStorage.getItem('token'))
 
   //const employeeId = employeeData.employeeId;
+  //const [showModal,setShowModal] = useState(false);
+  //const [selectedChallenge,setSelectedChallenge] = useState(null);
+  
+    const [dialog,setDialog]  = useState(false);
+    const [selectedChallengeRegister , setSelectedChallengeRegister] = useState(null);
+    const [successDialog,setSuccessDialog] = useState(false);
+    const [errorMessage, setErrorMessage] = useState("");
+    const [errorDialog, setErrorDialog] = useState(false);
+    const navigate = useNavigate();
+
+
+
   const { userInfo } = useUser();
 
   const employeeId = userInfo?.employeeId;
@@ -27,6 +41,30 @@ function UserChallengeHome() {
       setData(response.data);
     });
   }, []);
+
+
+
+  // const handleShowModal = (challengeId,challengeName) => {
+  //     setSelectedChallenge({ id: challengeId, name: challengeName });
+  //     setShowModal(true);
+  // };
+  
+  // const handleDelete = () =>{
+  //   if(selectedChallenge?.id)
+  //   {
+  //     deleteChallenge(selectedChallenge.id)
+  //     .then(()=>{
+  //       setData(data.filter(chal =>chal.challengeId !== selectedChallenge.id));
+  //       setShowModal(false);
+  //      // navigate('/challenges');
+  //       //window.location.reload()
+       
+  //     })
+  //     .catch(err=>console.log(err));
+  //   }
+  // };
+  
+
 
   // const handleDelete = (challengeId) => {
   //   const confirm = window.confirm("Would you like to delete this challenge?");
@@ -39,16 +77,36 @@ function UserChallengeHome() {
   //   }
   // };
 
-  const handleRegister = (employeeId, challengeId) => {
-    const confirm = window.confirm("Would you like to Register ths Challenge?");
-    if (confirm) {
-      registerChallenge(employeeId, challengeId)
-        .then(() => {
-          window.location.reload();
-        })
-        .catch((err) => console.log(err));
-    }
-  };
+  const handleShowDialog = (challengeId,challengeName) =>{
+    setSelectedChallengeRegister({id:challengeId,name:challengeName});
+    setDialog(true);
+  }
+
+
+
+  const handleRegister = (employeeId,challengeId)=>{
+        if(selectedChallengeRegister?.id)
+        {
+          //console.log(challengeId);
+          registerChallenge(employeeId, challengeId)
+          .then(()=>{
+           // navigate("/registered-challenges");
+            setDialog(false)
+            setSuccessDialog(true);
+           
+  
+          })
+          .catch((err) => {
+            console.log(err);
+           // const backendError = err.response?.data?.message;
+           setErrorMessage(err.message);
+            setDialog(false);
+            setErrorDialog(true); 
+  
+          });
+        }
+  
+       };
 
 
 
@@ -65,7 +123,7 @@ function UserChallengeHome() {
             </Link>
           </div> */}
           <div className="d-flex justify-content-end mb-2">
-          <ChallengeSearch/>
+          <UserChallengeSearch/>
           </div>
           <table className="table table-bordered">
             <thead>
@@ -91,7 +149,7 @@ function UserChallengeHome() {
 
                   <td>
                     <Link
-                      to={`/challengeRead/${d.challengeId}`}
+                      to={`/userChallengeRead/${d.challengeId}`}
                       className="btn btn-sm btn-info me-2"
                     >
                       Read
@@ -109,20 +167,82 @@ function UserChallengeHome() {
                       Delete
                     </button> */}
 
-                    <button
-                      onClick={() => handleRegister(employeeId, d.challengeId)}
+                     <button
+                      onClick={() => handleShowDialog(d.challengeId ,d.challengeName)}
                       className="btn btn-sm btn-success"
                     >
                       Register
-                    </button>
+                    </button> 
                   </td>
                 </tr>
               ))}
             </tbody>
           </table>
+          <Link to='/dashboard' className='btn btn-primary ms-3'> Home</Link>
+          
         </div>
       </div>
      {/* <RegisteredChallenges props={employeeId}/> */}
+
+     {/*register Confirmation Modal */}
+     <Modal show={dialog} onHide={() => setDialog(false)} centered>
+                      <Modal.Header closeButton>
+                          <Modal.Title>Confirm Register</Modal.Title>
+                      </Modal.Header>
+                      <Modal.Body>
+                          Are you sure you want to register <strong>{selectedChallengeRegister?.name}</strong> Challenge?
+                      </Modal.Body>
+                      <Modal.Footer>
+                          <Button variant="secondary" onClick={() => setDialog(false)}>
+                              Cancel
+                          </Button>
+                          <Button variant="danger" onClick={() => handleRegister(employeeId,selectedChallengeRegister?.id)}>
+                              Yes, Register
+                          </Button>
+                      </Modal.Footer>
+                  </Modal>
+
+      
+                  <Modal show={successDialog} onHide={() => {
+    setSuccessDialog(false);
+    navigate(`/registeredChallenges/${employeeId}`); // Navigate to registered challenges
+}} centered>
+  <Modal.Header closeButton>
+    <Modal.Title>Success</Modal.Title>
+  </Modal.Header>
+  <Modal.Body>
+    You have successfully registered for <strong>{selectedChallengeRegister?.name}</strong>!
+  </Modal.Body>
+  <Modal.Footer>
+    <Button variant="primary" onClick={() => {
+        setSuccessDialog(false);
+        navigate(`/registeredChallenges/${employeeId}`);
+    }}>
+      OK
+    </Button>
+  </Modal.Footer>
+</Modal>
+
+ 
+{/* Error Message Modal */}
+<Modal show={errorDialog} onHide={() => setErrorDialog(false)} centered>
+  <Modal.Header closeButton>
+    <Modal.Title>Error</Modal.Title>
+  </Modal.Header>
+  <Modal.Body>
+    {errorMessage}
+  </Modal.Body>
+  <Modal.Footer>
+    <Button variant="danger" onClick={() => setErrorDialog(false)}>
+      Close
+    </Button>
+  </Modal.Footer>
+</Modal>
+
+
+
+
+
     </>
     
   );

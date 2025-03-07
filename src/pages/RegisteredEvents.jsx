@@ -13,6 +13,7 @@ import {
  // Button,
 
 } from "@mui/material";
+import {Link} from "react-router-dom"
 import useEmployeeId from '../utils/useEmployeeId';
 //import Home from "./managerhome";
 import { getRegisterdEvents } from "../services/eventService";
@@ -93,6 +94,12 @@ const RegisteredEvents = () => {
         ) : (
           <Typography>No Events found for this employee.</Typography>
         )}
+
+         <div className="pt-3">
+                 <Link to="/userEvents" className="btn btn-primary ms-3">
+                          Back
+                        </Link>
+                  </div>
       </Paper>
 
       

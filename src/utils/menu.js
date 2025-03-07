@@ -9,12 +9,12 @@ const getMenu =(userRole,employeeId)=>{
 const menu = [
    
 
-    {
-        id:0,
-        displayName:'Home',
-        path:'dashboard',
-        role:['USER', 'MANAGER'] //access role
-    },
+    // {
+    //     id:0,
+    //     displayName:'Home',
+    //     path:'dashboard',
+    //     role:['USER', 'MANAGER'] //access role
+    // },
     {
         id:1,
         displayName:'Associates',
@@ -86,7 +86,7 @@ const menu = [
    dropdown: [
     //{ label: "Add Events", path: "/addEvent" },
     { label: "Get All Events", path: "/userEvents" },
-    { label: "Get Event By Id", path: "/eventSearch" },
+    { label: "Get Event By Id", path: "/userEvents" },
     //{ label: "Update Event", path: "/event" },
    // { label: "Delete Event", path: "/event" },
     {label : "Registered Events", path:`/registeredEvents/${employeeId}`}
@@ -119,7 +119,7 @@ const menu = [
    dropdown: [
    // { label: "Add Wellness Program", path: "/addWellnessprogram" },
     { label: "Get All Wellness Programs", path: "/userWellness"  },
-    { label: "Get Wellness Program By Id", path: "/WellnessSearch" },
+    { label: "Get Wellness Program By Id", path: "/userWellness" },
    // { label: "Update Wellness Program", path: "/wellnessProgram" },
     //{ label: "Delete Wellness Program", path: "/wellnessProgram" },
     {label : "Registered Wellness Programs", path:`/registeredWellness/${employeeId}`}
@@ -168,12 +168,12 @@ const menu = [
 
 
 
-    {
-        id:10,
-        displayName:'User Info',
-        path:'user-info',
-        role:['USER'] //access role
-    }
+    // {
+    //     id:10,
+    //     displayName:'User Info',
+    //     path:'user-info',
+    //     role:['USER'] //access role
+    // }
 
 
 

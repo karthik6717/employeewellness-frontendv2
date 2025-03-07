@@ -20,6 +20,7 @@ import EmployeeUpdate from "./pages/EmployeeUpdate";
 import AddChallenge from "./pages/AddChallenge";
 import ChallengeHome from "./pages/ChallengeHome";
 import ChallengeRead from "./pages/ChallengeRead";
+import UserChallengeRead from "./pages/UserChallengeread";
 //import ChallengeSearch from "./pages/ChallengeSearch";
 import ChallengeUpdate from "./pages/ChallengeUpdate";
 
@@ -55,8 +56,13 @@ import DoctorRead from "./pages/DoctorRead"
 //import DoctorSearch from "./pages/DoctorSearch"
 import DoctorUpdate from "./pages/DoctorUpdate"
 
+
 import UserDoctorHome from "./pages/UserDoctorHome ";
 import { Navigate } from "react-router-dom";
+//import UserChallengeSearch from "./pages/UserChallengeSearch";
+import UserEventRead from "./pages/userEventRead";
+import UserWellnessProgramRead from "./pages/UserWellnessProgramRead";
+import UserDoctorRead from "./pages/UserDoctorRead";
 
 
 
@@ -73,13 +79,13 @@ function App() {
             <Route path="/login" element={<Login />} />
 
           {/* Private route for dashboard accessible to ADMIN and user Roles */}
-          <Route path="dashboard" element={ 
+          {/* <Route path="dashboard" element={ 
             <PrivateRoute allowedRoles={["MANAGER", "USER"]}>
             <Dashboard />
               </PrivateRoute>
             }
 
-           />
+           /> */}
 
           {/* Private routes for Manager  to access the Employee dropdown */}
           <Route
@@ -166,7 +172,7 @@ function App() {
           <Route
             path="/challengeRead/:challengeId"
             element={
-              <PrivateRoute allowedRoles={["MANAGER","USER"]}>
+              <PrivateRoute allowedRoles={["MANAGER"]}>
                 <ChallengeRead />
               </PrivateRoute>
             }
@@ -191,7 +197,24 @@ function App() {
               </PrivateRoute>
             }
           />
+         
+         {/* <Route
+           path="/userChallengeSearch"
+           element={
+            <PrivateRoute allowedRoles={["USER"]}>
+              <UserChallengeSearch/>
+            </PrivateRoute>
+            
+           }/> */}
 
+           <Route
+           path="/userChallengeRead/:challengeId"
+           element={
+            <PrivateRoute allowedRoles={["USER"]}>
+              <UserChallengeRead/>
+            </PrivateRoute>
+            
+           }/>
 
 {/* Private route for Manager to access the  Events dropdown*/}
 
@@ -212,14 +235,14 @@ function App() {
             }
           />
 
-          <Route
+          {/* <Route
             path="/eventSearch"
             element={
               <PrivateRoute allowedRoles={["MANAGER","USER"]}>
                 <EventHome />
               </PrivateRoute>
             }
-          />
+          /> */}
           
           <Route
             path="/eventUpdate/:eventId"
@@ -233,7 +256,7 @@ function App() {
           <Route
             path="/eventRead/:eventId"
             element={
-              <PrivateRoute allowedRoles={["MANAGER","USER"]}>
+              <PrivateRoute allowedRoles={["MANAGER"]}>
                 <EventRead />
               </PrivateRoute>
             }
@@ -259,6 +282,15 @@ function App() {
               </PrivateRoute>
             }
           />
+ 
+            <Route
+            path="/usereventRead/:eventId"
+            element={
+              <PrivateRoute allowedRoles={["USER"]}>
+                <UserEventRead/>
+              </PrivateRoute>
+            }
+          /> 
 
 
           {/* Private route for Manager to access the  Wellness dropdown*/}
@@ -280,14 +312,14 @@ function App() {
             }
           />
 
-          <Route
+          {/* <Route
             path="/WellnessSearch"
             element={
               <PrivateRoute allowedRoles={["MANAGER","USER"]}>
                 <WellnessHome/>
               </PrivateRoute>
             }
-          />
+          /> */}
           
           <Route
             path="/wellnessUpdate/:wellnessProgramId"
@@ -301,7 +333,7 @@ function App() {
           <Route
             path="/wellnessProgramRead/:wellnessProgramId"
             element={
-              <PrivateRoute allowedRoles={["MANAGER","USER"]}>
+              <PrivateRoute allowedRoles={["MANAGER"]}>
                 <WellnessProgramRead />
               </PrivateRoute>
             }
@@ -328,6 +360,15 @@ function App() {
             }
           />
 
+          <Route
+            path="/userwellnessProgramRead/:wellnessProgramId"
+            element={
+              <PrivateRoute allowedRoles={["USER"]}>
+                <UserWellnessProgramRead />
+              </PrivateRoute>
+            }
+          /> 
+
 
 {/* Private route for Manager to access the  doctor dropdown*/}
 
@@ -348,14 +389,14 @@ function App() {
             }
           />
 
-          <Route
+          {/* <Route
             path="/doctorSearch"
             element={
               <PrivateRoute allowedRoles={["MANAGER","USER"]}>
                 <DoctorHome/>
               </PrivateRoute>
             }
-          />
+          /> */}
           
           <Route
             path="/doctorUpdate/:doctorId"
@@ -369,7 +410,7 @@ function App() {
           <Route
             path="/doctorRead/:doctorId"
             element={
-              <PrivateRoute allowedRoles={["MANAGER","USER"]}>
+              <PrivateRoute allowedRoles={["MANAGER"]}>
                 <DoctorRead />
               </PrivateRoute>
             }
@@ -397,16 +438,25 @@ function App() {
             }
           />
 
+            <Route
+            path="/userdoctorRead/:doctorId"
+            element={
+              <PrivateRoute allowedRoles={["USER"]}>
+                <UserDoctorRead />
+              </PrivateRoute>
+            }
+          /> 
+
           {/*this route accessible to USER role only */}
 
-          <Route
+          {/* <Route
             path="user-info"
             element={
               <PrivateRoute allowedRoles={["USER"]}>
                 <UserInfo />
               </PrivateRoute>
             }
-          />
+          /> */}
         </Routes>
       </UserProvider>
     </>
