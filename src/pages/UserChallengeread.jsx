@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 import { getChallengeById } from "../services/challengeService"; // Import your service function
 //import Home from "./managerhome";
 
-function ChallengeRead() {
+function UserChallengeRead() {
   const [data, setData] = useState([]);
   const { challengeId } = useParams();
 
@@ -39,9 +39,9 @@ function ChallengeRead() {
           <strong>Description: {data.description}</strong>
         </div>
 
-        <Link to={`/challengeUpdate/${challengeId}`} className="btn btn-success">
+        {/* <Link to={`/challengeUpdate/${challengeId}`} className="btn btn-success">
           Edit
-        </Link>
+        </Link> */}
         <Link to="/userchallenges" className="btn btn-primary ms-3">
           Back
         </Link>
@@ -51,4 +51,4 @@ function ChallengeRead() {
   );
 }
 
-export default ChallengeRead;
+export default UserChallengeRead;

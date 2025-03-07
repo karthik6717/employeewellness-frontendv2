@@ -351,7 +351,7 @@ function Header() {
                     setLoading(false);
                 });
         }
-    }, [userInfo, employeeId]);  // 🔹 Runs as soon as userInfo or employeeId changes
+    }, [userInfo, employeeId]);  //  Runs as soon as userInfo or employeeId changes
     
 
 
@@ -388,7 +388,7 @@ function Header() {
     // Extract initials from userInfo (first letter of first name + first letter of last name)
     const getUserInitials = () => {
         if (employeeDetails && employeeDetails.firstName && employeeDetails.lastName) {
-            return `${employeeDetails.firstName[0]}${employeeDetails.lastName[0]}`;
+            return `${employeeDetails.firstName[0].toUpperCase()}${employeeDetails.lastName[0].toUpperCase()}`;
         }
         return '';
     };
@@ -406,7 +406,7 @@ function Header() {
                     <SpaRoundedIcon />
                 </IconButton>
 
-                <Navbar.Brand href="#home" style={{ color: "white" }}>EmployeeWellness</Navbar.Brand>
+                <Navbar.Brand href="/" style={{ color: "white" }}>EmployeeWellness</Navbar.Brand>
                 <Navbar.Toggle aria-controls="basic-navbar-nav" />
                 <Navbar.Collapse id="basic-navbar-nav">
                     <Nav className="ms-auto" style={{ alignItems: "center" }}>

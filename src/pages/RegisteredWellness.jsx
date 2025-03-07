@@ -14,6 +14,7 @@ import {
  // Button,
 
 } from "@mui/material";
+import {Link} from "react-router-dom"
 import {
     getRegisterdWellnessPrograms,
 } from "../services/wellnessprogramService"; // Import API service
@@ -100,6 +101,14 @@ const RegisteredWellness = () => {
         ) : (
           <Typography>No wellness programs found for this employee.</Typography>
         )}
+     
+     <div className="pt-3">
+              <Link to="/userWellness" className="btn btn-primary ms-3">
+                       Back
+                     </Link>
+               </div>
+
+
       </Paper>
 
       

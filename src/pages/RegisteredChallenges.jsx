@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 //import PropTypes from "prop-types";
-//import { useParams } from "react-router-dom";
+import { Link } from "react-router-dom";
 import {
   Table,
   TableBody,
@@ -94,8 +94,8 @@ const RegisteredChallenges = () => {
   return (
     <>
     
-      <Paper sx={{ padding: 3 }}>
-        <Typography variant="h5" gutterBottom>
+      <Paper sx={{ padding: 6 }}>
+        <Typography variant="h5" gutterBottom >
           Registered Challenges
         </Typography>
         {loading ? (
@@ -147,6 +147,11 @@ const RegisteredChallenges = () => {
         ) : (
           <Typography>No challenges found for this employee.</Typography>
         )}
+         <div className="pt-3">
+         <Link to="/userchallenges" className="btn btn-primary ms-3">
+                  Back
+                </Link>
+          </div>
       </Paper>
 
       {/* Dialog for showing challenge details */}
