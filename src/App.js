@@ -4,7 +4,7 @@ import Header from "./components/Header";
 import { Route, Routes } from "react-router-dom";
 import Dashboard from "./pages/Dashboard";
 //import AdminPanel from "./pages/AdminPanel";
-import UserInfo from "./pages/UserInfo";
+//import UserInfo from "./pages/UserInfo";
 import Users from "./pages/Users";
 import Login from "./pages/Login";
 import { UserProvider } from "./contexts/UserContext";
@@ -79,13 +79,13 @@ function App() {
             <Route path="/login" element={<Login />} />
 
           {/* Private route for dashboard accessible to ADMIN and user Roles */}
-          {/* <Route path="dashboard" element={ 
+          <Route path="dashboard" element={ 
             <PrivateRoute allowedRoles={["MANAGER", "USER"]}>
             <Dashboard />
               </PrivateRoute>
             }
 
-           /> */}
+           />
 
           {/* Private routes for Manager  to access the Employee dropdown */}
           <Route

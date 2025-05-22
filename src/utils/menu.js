@@ -9,12 +9,12 @@ const getMenu =(userRole,employeeId)=>{
 const menu = [
    
 
-    // {
-    //     id:0,
-    //     displayName:'Home',
-    //     path:'dashboard',
-    //     role:['USER', 'MANAGER'] //access role
-    // },
+    {
+        id:0,
+        displayName:'Home',
+        path:'dashboard',
+        role:['USER', 'MANAGER'] //access role
+    },
     {
         id:1,
         displayName:'Associates',
