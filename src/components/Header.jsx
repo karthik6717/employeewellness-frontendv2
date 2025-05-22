@@ -406,7 +406,7 @@ function Header() {
                     <SpaRoundedIcon />
                 </IconButton>
 
-                <Navbar.Brand href="/" style={{ color: "white" }}>EmployeeWellness</Navbar.Brand>
+                <Navbar.Brand href="/" style={{ color: "white" }}> EmployeeWellness</Navbar.Brand>
                 <Navbar.Toggle aria-controls="basic-navbar-nav" />
                 <Navbar.Collapse id="basic-navbar-nav">
                     <Nav className="ms-auto" style={{ alignItems: "center" }}>

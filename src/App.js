@@ -64,6 +64,9 @@ import UserEventRead from "./pages/userEventRead";
 import UserWellnessProgramRead from "./pages/UserWellnessProgramRead";
 import UserDoctorRead from "./pages/UserDoctorRead";
 
+//Error page
+import ErrorPage from "./pages/ErrorPage";
+
 
 
 function App() {
@@ -77,6 +80,7 @@ function App() {
           {/* <Route path="/" element={<Login />} /> */}
           <Route path="/" element={<Navigate to="/login" />} />
             <Route path="/login" element={<Login />} />
+             <Route path="*" element={<ErrorPage errorCode={404} errorMessage="Page Not Found" />} />
 
           {/* Private route for dashboard accessible to ADMIN and user Roles */}
           <Route path="dashboard" element={ 
